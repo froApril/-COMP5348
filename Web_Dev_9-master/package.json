@@ -1,0 +1,25 @@
+{
+  "name": "web-dev-9",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "lint": "eslint \"./**/*.js\"",
+    "import": "./importbash"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel-eslint": "^10.0.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "eslint": "^5.16.0",
+    "eslint-config-google": "^0.12.0",
+    "express": "~4.16.0",
+    "express-session": "^1.16.1",
+    "http-errors": "~1.6.2",
+    "jquery": "^3.4.0",
+    "mongoose": "~5.5.1",
+    "morgan": "~1.9.0"
+  }
+}

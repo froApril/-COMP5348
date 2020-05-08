@@ -1,0 +1,16 @@
+#!/bin/bash
+# get all filename in specified path
+
+path=$1
+files=$(ls Dataset_25_March_2019/revisions)
+echo -e "================\nImporting Revision Database\n================\n"
+for filename in $files
+do
+   mongoimport --db "revision" --collection "revisions" --type json --file "Dataset_25_March_2019/revisions/"$filename --jsonArray
+done
+echo -e "================\nFixing Revision Timestamps\n================\n"
+mongo revision --eval "db.revisions.find({}).forEach(function(doc) {doc.timestamp = new Date(doc.timestamp); db.revisions.save(doc)})"
+echo -e "================\nAdding UserType Field\n================\n"
+mongo revision --eval "db.revisions.updateMany({'anon':{\$exists:false}}, {\$set:{'usertype':'user'}})"
+echo "================\nFixing User Types\n================\n"
+mongo revision typecorrection.js

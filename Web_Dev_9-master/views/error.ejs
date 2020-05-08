@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WikiLyse</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src='/javascripts/nav-bar.js'></script>
+    <script src='/javascripts/render.js'></script>
+  </head>
+  <body>
+   
+    <div class='nav'>
+      <div class='nav-content'>
+          <div class='nav-item'><a href="/article?index=1"  >Article analyze</a></div>
+          <div class='nav-item'><a href="/article?index=2"  >individual analyze</a></div>
+          <div class='nav-item'><a href="/article?index=3"  >Author analyze</a></div>
+      </div>
+      <div class='nav-logo'>
+        <div class='nav-item' id='logo'><a href='/'>WikiLyse</a></div>
+      </div>
+      <div class='nav-user'>
+            <% if (flag) { %>
+                <div class='nav-item'>Hello <%=name%></a></div>
+                <div class='nav-item'><a href='/logout'>Log out</a></div>
+            <% } else { %>
+                <div class='nav-item'><a href='/login'>Login</a></div>
+                <div class='nav-item'><a href='/signup'>Signup</a></div>
+            <% } %>
+      </div>
+    </div>
+    <div class='content-wrapper'>
+      <div class='content'>
+        <%=message%>
+    </div>
+    
+  </body>
+</html>

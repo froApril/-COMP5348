@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WikiLyse</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src='/javascripts/nav-bar.js'></script>
+    <script src='/javascripts/render.js'></script>
+    <script src='/javascripts/logout.js'></script>
+  </head>
+  <body>
+    <div class='nav'>
+      <div class='nav-content'>
+          <% if (flag) { %>
+          <div class='nav-item'><a href="/article?index=1"  >Overall Analytics</a></div>
+          <div class='nav-item'><a href="/article?index=2"  >Article Analytics</a></div>
+          <div class='nav-item'><a href="/article?index=3"  >Author Analytics</a></div>
+          <% } %>
+      </div>
+      <div class='nav-logo'>
+        <div class='nav-item' id='logo'><a href='/'>WikiLyse</a></div>
+      </div>
+      <div class='nav-user'>
+          <% if (flag) { %>
+            <div class='nav-item'>Hello <%=name%></a></div>
+            <div class='nav-item'><a href='/logout'>Log out</a></div>
+            <% } else { %>
+            <div class='nav-item'><a href='/login'>Login</a></div>
+            <div class='nav-item'><a href='/signup'>Signup</a></div>
+          <% } %>
+      </div>
+    </div>
+    <div class='content-wrapper'>
+      <div class='content'>
+        <h1>Welcome to <%= title %></h1>
+        <br><br><br>
+        <div class="landingpageContainer">
+          <div class="landingpageContent">
+            <p>WikiLyse is a platform for generating data analytics from select Wikipedia Articles.</p>
+          </div>
+          <div class="landingpageContent">
+            <img src="/images/piegraph.png">
+          </div>
+          <div class="landingpageContent">
+            <img src="/images/articledistribution.png">
+          </div>
+          <div class="landingpageContent">
+            <p>WikiLyse can help you visiualise how articles have changed over time, how they grow.</p>
+          </div>
+          <div class="landingpageContent">
+            <p>View dynamic statistics, updated in real time, for real people.</p>
+          </div>
+          <div class="landingpageContent">
+            <img src="/images/usertypeyear.png" >
+          </div>
+        </div>
+        </div>
+    </div>
+    
+  </body>
+</html>

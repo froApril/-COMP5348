@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WikiLyse</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src='/javascripts/nav-bar.js'></script>
+    <script�type="text/javascript"�src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascript/articleAnalyze.js"></script>
+    <script type="text/javascript" src="/javascript/content.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="/javascript/pieGraphs.js"></script>
+    <script type="text/javascript" src="/javascript/barGraphs.js"></script>
+</head>
+  <body>
+    <div class='nav'>
+            <div class='nav-content'>
+                    <% if (flag) { %>
+                        <div class='nav-item'><a href="javascript:" onclick=display_article() >Overall Analytics</a></div>
+                        <div class='nav-item'><a href="javascript:" onclick=display_individual() >Article Analytics</a></div>
+                        <div class='nav-item'><a href="javascript:" onclick=display_author() >Author Analytics</a></div>
+                    <% } %>
+            </div>
+            <div class='nav-logo'>
+                <div class='nav-item' id='logo'><a href='/'>WikiLyse</a></div>
+            </div>
+            <div class='nav-user'>
+                <% if (flag) { %>
+                    <div class='nav-item'>Hello <%=name%></a></div>
+                    <div class='nav-item'><a href='/logout'>Log out</a></div>
+                <% } else { %>
+                    <div class='nav-item'><a href='/login'>Login</a></div>
+                    <div class='nav-item'><a href='/signup'>Signup</a></div>
+                <% } %>
+      </div>
+        </div>
+    <div class='content-wrapper'>
+        <div class='content'>
+            <div id ='article analyze'>
+                <h1>Overall analysis</h1>
+                <script>
+                    showHistory_H()
+                    showRevision_H(2);
+                    showRevision_L(2);
+                    showHistory_L();
+                    showUserNumber_H();
+                    showUserNumber_L();
+                    populateDatalist();
+                    totalForTitle();
+                    articleTopAuthors();
+                    drawOverallPie();
+                    drawOverallBar();
+                    authorSearch();
+                    authorTitles();
+                    authorsTimestamps();
+                    drawArticleYearBar();
+                </script>
+                <label for='number'>Enter a number to view articles with the highest/lowest number of revisions:</label>
+                <input type="text" id="articalNum" name="articalNum" value="2">
+                <input type="button" value="Go" id ="submit" onclick="setRevision();"/>
+                <h3>Articles with the Highest Number of Revisions</h3>
+                    <ul id="revision list highest">
+                        
+                    </ul>
+                <h3>Articles with the Lowest Number of Revisions</h3>
+                    <ul id="revision list lowest">
+                        
+                    </ul>
+                <h3>Articles with the Longest History</h3>
+                    <ul id="longest history">
+                        
+                    </ul>
+                <h3>Article with the Shortest History</h3>
+                    <ul id="shortest history">
+                        
+                    </ul>
+                <h3>Article edited by the Most Registered Users</h3>
+                    <ul id="most registeredNum">
+                        
+                    </ul>
+                <h3>Article edited by the Least Registered Users</h3>
+                    <ul id="least registeredNum">
+                        
+                    </ul>
+                <h2>Graphs</h2>
+                <p>Choose a graph to display</p>
+                <input type="button" id="showPie" value="Pie chart">
+                <input type="button" id="showBar" value="Bar chart">
+                <div id='overgraphs'>
+                    <p id="overallPieChart" class="chart"></p>
+                    <p id="overallBarChart" class="chart"></p>
+                </div>
+            </div>
+        
+            <div id='individual analytics'>
+                 <h1>Individual Article Analysis</h1>
+                Select an article:
+                <input type="text" name="findTitle" list="searchTitle"/> 
+                <datalist id="searchTitle"></datalist>
+                <br>
+        		Select a range of years to see stats for (enter Year as a 4-digit number):<br> 
+        		From: <input type="number" id="fromYear" value="2000"><br>
+        		To: <input type="number" id="toYear" value="2019"><br>
+                <input type="button" value="Search" id="individualSearch">
+                <div id="individualAlert"></div>
+                    <h2 id="individualTitle"></h2>
+                    <h3 id="individualTotal"></h3>
+                    <h3 id="topAuthors"></h3>  
+                
+                <div id ="indi_graphs_buttons">
+                    <h2>Graphs</h2>
+                    <p>Choose a graph to show</p>
+                    <input type="button" id="showPie_indi" value="Pie chart">
+                    <input type="button" id="showBar_indi" value="Bar chart">
+                </div>
+                <div id='indi_graphs'>
+                    <p id="individualPieChart" class="chart"></p>
+                    <p id="individualBarChart" class="chart"></p>
+                </div>
+                
+                <div id="searchUser">
+                </div>
+                <div id='graphButton' >
+                    
+                </div>
+                <p id = UserBarChart></p>
+
+            </div>
+            <div id='author analytics'>
+                    <h1>Author Analytics</h1>
+
+                    <label for='author'>Enter an Author username:</label>
+                <input type="text" id="findAuthor" name="findAuthor">
+                <input type="button" value="Search for Titles" id ="submit" onclick="authorSearch();"/>
+				
+                
+
+                    <h2 id="authorTitles"></h2>
+
+                    <button type="button" id ="displayTimestamps">Display Timestamps</button> (for articles with more than 1 revision)
+                    <h3 id="authorTimes"></h2>
+            </div>
+    
+
+        </div>
+    </div>
+
+    <div id= 'default'>
+        <h2>Please make a choice</h2>
+        <a href="javascript:;" onclick=display_article()><u>Article analyze</u></a>
+        <a href="javascript:;" onclick=display_individual()><u>individual analyze</u></a>
+        <a href="javascript:;" onclick=display_author()><u>Author analyze</u></a>
+    </div>
+   
+    
+  </body>
+</html>
